@@ -1,0 +1,12 @@
+.jumbotron {
+  margin-top: 30px;
+}
+.icons {
+  cursor: pointer;
+}
+.icons i {
+  margin-left: 20px;
+}
+.subtitle {
+  cursor: pointer;
+}

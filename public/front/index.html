@@ -1,0 +1,69 @@
+<html>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+  />
+  <link rel="stylesheet" href="/front/styles.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <body>
+    <main role="main" class="container">
+      <div class="jumbotron">
+        <h1>Drag & drop list</h1>
+        <h2 class="subtitle" onClick="openModal()">
+          Add new item <i class="far fa-plus-square"></i>
+        </h2>
+
+        <p class="lead">Showing <span id="count">0</span> items</p>
+        <div id="list"></div>
+      </div>
+      <div class="modal" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Item form</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    aria-describedby="email"
+                    maxlength="300"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Image</label>
+                  <input type="file" class="form-control-file" id="file" />
+                </div>
+                <input type="id" id="id" hidden />
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="/front/script.js"></script>
+</html>
