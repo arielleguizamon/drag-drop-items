@@ -38,7 +38,7 @@ const imageFilter = (req, file, cb) => {
 };
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/img");
+    cb(null, __dirname + "/public/img");
   },
 
   filename: (req, file, cb) => {
@@ -59,6 +59,7 @@ app.get("/", (req, res) => {
 app.post("/api/items", (req, res) => {
   upload(req, res, async err => {
     if (err || !req.file || !req.body.description) {
+      console.log(err, req.file, req.body.description);
       return res.status(400).json("Error");
     } else {
       const count = await Item.count();

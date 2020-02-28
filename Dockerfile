@@ -6,6 +6,8 @@ COPY package.json package.json
 
 RUN npm install
 
+RUN mkdir public/img
+
 COPY . .
 
 EXPOSE 3000

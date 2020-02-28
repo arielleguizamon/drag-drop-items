@@ -1,3 +1,4 @@
+const BASE_URL = "http://localhost";
 new Sortable(list, {
   animation: 150,
   onEnd: async evt => {
@@ -15,7 +16,7 @@ new Sortable(list, {
 });
 
 const updatePositions = async (from, to, type) => {
-  const response = await fetch("http://localhost:3000/api/items/positions", {
+  const response = await fetch(`${BASE_URL}/api/items/positions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -25,16 +26,13 @@ const updatePositions = async (from, to, type) => {
 };
 
 const updateItemPosition = async (id, position) => {
-  const response = await fetch(
-    `http://localhost:3000/api/items/${id}/position`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ position })
-    }
-  );
+  const response = await fetch(`${BASE_URL}/api/items/${id}/position`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ position })
+  });
 };
 
 const setLength = length =>
@@ -42,10 +40,11 @@ const setLength = length =>
 
 const deleteItem = async id => {
   document.getElementById(id).remove();
-  const response = await fetch(`http://localhost:3000/api/items/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/items/${id}`, {
     method: "DELETE"
   });
-  setLength();
+  const length = document.getElementById("count").textContent -1 ;
+  setLength(length);
 };
 const openModal = id => {
   $("#modal").modal();
@@ -76,7 +75,7 @@ $("#form").submit(event => {
 });
 
 const updateItem = async (id, formData) => {
-  const response = await fetch(`http://localhost:3000/api/items/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/items/${id}`, {
     method: "PUT",
     body: formData
   });
@@ -93,7 +92,7 @@ const updateItem = async (id, formData) => {
 };
 
 const createItem = async formData => {
-  const response = await fetch("http://localhost:3000/api/items", {
+  const response = await fetch(`${BASE_URL}/api/items`, {
     method: "POST",
     body: formData
   });
@@ -105,6 +104,7 @@ const createItem = async formData => {
     const item = await response.json();
     createAndInsertItem(item);
     $("#modal").modal("hide");
+    setLength(item.position + 1);
   }
 };
 
@@ -127,7 +127,7 @@ const newItem = item =>
   </div>`;
 
 const getItems = async () => {
-  const response = await fetch("http://localhost:3000/api/items");
+  const response = await fetch(`${BASE_URL}/api/items`);
   const items = await response.json();
   setLength(items.length);
   items.forEach(e => {
